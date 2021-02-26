@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_social/Screens/models/student.dart';
+import 'package:projeto_social/models/student.dart';
 
 class StudentTile extends StatelessWidget {
   final Student student;

@@ -1,9 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:projeto_social/Screens/Login/login_screen.dart';
-import 'package:projeto_social/Screens/Singup/singup_screen.dart';
-import 'package:projeto_social/Screens/components/rouded_button.dart';
+import 'package:projeto_social/components/rouded_button.dart';
 import 'package:projeto_social/routes/app_routes.dart';
 
 import 'components.dart';
