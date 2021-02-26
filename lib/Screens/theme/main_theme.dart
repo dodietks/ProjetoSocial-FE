@@ -1,5 +1,5 @@
 class MainTheme {
-  double iconSize;
+  final double iconSize;
 
   MainTheme({this.iconSize: 50});
 }

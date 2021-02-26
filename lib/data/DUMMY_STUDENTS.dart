@@ -1,4 +1,4 @@
-import 'package:projeto_social/Screens/models/student.dart';
+import 'package:projeto_social/models/student.dart';
 
 const DUMMY_STUDENTS = {
   '1': const Student(

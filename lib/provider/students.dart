@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:projeto_social/Screens/data/DUMMY_STUDENTS.dart';
-import 'package:projeto_social/Screens/models/student.dart';
+import 'package:projeto_social/data/DUMMY_STUDENTS.dart';
+import 'package:projeto_social/models/student.dart';
 
 class Students with ChangeNotifier {
   Map<String, Student> _items = {...DUMMY_STUDENTS};

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_social/Screens/StudentList/components/body.dart';
-import 'package:projeto_social/Screens/provider/students.dart';
-import 'package:projeto_social/Screens/theme/main_theme.dart';
+import 'package:projeto_social/provider/students.dart';
 import 'package:projeto_social/routes/app_routes.dart';
 
 class Background extends StatelessWidget {

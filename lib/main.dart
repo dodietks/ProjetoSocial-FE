@@ -4,7 +4,7 @@ import 'package:projeto_social/Screens/Singup/singup_screen.dart';
 import 'package:projeto_social/Screens/StudentList/student_list.dart';
 import 'package:projeto_social/Screens/StudentRegister/student_registration_screen.dart';
 import 'package:projeto_social/Screens/Welcome/welcome_screen.dart';
-import 'package:projeto_social/Screens/provider/students.dart';
+import 'package:projeto_social/provider/students.dart';
 import 'package:projeto_social/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 

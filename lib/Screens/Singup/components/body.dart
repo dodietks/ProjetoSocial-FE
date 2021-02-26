@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_social/Screens/Login/components/background.dart';
-import 'package:projeto_social/Screens/Login/login_screen.dart';
 import 'package:projeto_social/Screens/Singup/components/or_divider.dart';
 import 'package:projeto_social/Screens/Singup/components/social_icons.dart';
-import 'package:projeto_social/Screens/components/have_account_check.dart';
-import 'package:projeto_social/Screens/components/rouded_button.dart';
-import 'package:projeto_social/Screens/components/rouded_input_field.dart';
-import 'package:projeto_social/Screens/components/rouded_password_field.dart';
+import 'package:projeto_social/components/have_account_check.dart';
+import 'package:projeto_social/components/rouded_button.dart';
+import 'package:projeto_social/components/rouded_input_field.dart';
+import 'package:projeto_social/components/rouded_password_field.dart';
 import 'package:projeto_social/routes/app_routes.dart';
 
 class Body extends StatelessWidget {

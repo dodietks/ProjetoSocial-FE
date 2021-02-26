@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_social/Screens/StudentList/components/student_tile.dart';
-import 'package:projeto_social/Screens/provider/students.dart';
+import 'package:projeto_social/provider/students.dart';
 
 class Body extends StatelessWidget {
   const Body({
