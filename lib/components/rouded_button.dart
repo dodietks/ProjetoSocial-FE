@@ -20,13 +20,16 @@ class RoudedButton extends StatelessWidget {
       width: size.width * 0.8,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(29),
-        child: FlatButton(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
-            color: color,
+        child: ElevatedButton(
+            //padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+            //color: color,
             onPressed: press,
-            child: Text(
-              text,
-              style: TextStyle(color: textColor),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Text(
+                text,
+                style: TextStyle(color: textColor),
+              ),
             )),
       ),
     );

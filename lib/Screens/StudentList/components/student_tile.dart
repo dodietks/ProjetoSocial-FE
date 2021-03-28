@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_social/models/student.dart';
+import 'package:projeto_social/provider/students.dart';
+import 'package:projeto_social/routes/app_routes.dart';
+import 'package:provider/provider.dart';
 
 class StudentTile extends StatelessWidget {
   final Student student;
@@ -20,7 +23,7 @@ class StudentTile extends StatelessWidget {
       subtitle: Container(
         child: Row(
           children: <Widget>[
-            Text(student.attendance),
+            Text("Presenças: " + student.attendance),
             IconButton(
               icon: Icon(Icons.add_box),
               color: Colors.amber,
@@ -36,13 +39,49 @@ class StudentTile extends StatelessWidget {
           children: <Widget>[
             IconButton(
               icon: Icon(Icons.edit),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  AppRoutes.STUDENT_REGISTRATION_SCREEN,
+                  arguments: student,
+                );
+              },
             ),
             IconButton(
               icon: Icon(
                 Icons.delete,
               ),
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (ctx) => AlertDialog(
+                    title: Text('Excluir aluno?'),
+                    content: Text('Você Gostaria de Excluir o usuário ' +
+                        student.name +
+                        '?'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(false);
+                        },
+                        child: Text('Cancelar'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                        },
+                        child: Text('Confirmar'),
+                      ),
+                    ],
+                  ),
+                ).then(
+                  (confirmed) {
+                    if (confirmed) {
+                      Provider.of<Students>(context, listen: false)
+                          .remove(student);
+                    }
+                  },
+                );
+              },
             ),
           ],
         ),

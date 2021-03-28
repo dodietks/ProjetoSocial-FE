@@ -1,6 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_social/models/student.dart';
+import 'package:projeto_social/provider/students.dart';
+import 'package:provider/provider.dart';
 
-class StudentRegisterScreen extends StatelessWidget {
+class StudentRegisterScreen extends StatefulWidget {
+  @override
+  _StudentRegisterScreenState createState() => _StudentRegisterScreenState();
+}
+
+class _StudentRegisterScreenState extends State<StudentRegisterScreen> {
+  final _form = GlobalKey<FormState>();
+
+  final Map<String, String> _formData = {};
+
+  void _getFormData(Student student) {
+    if (student != null) {
+      _formData['id'] = student.id;
+      _formData['name'] = student.name;
+      _formData['email'] = student.email;
+      _formData['attendance'] = student.attendance;
+      _formData['avatarUrl'] = student.avatarUrl;
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final Student student = ModalRoute.of(context).settings.arguments;
+
+    _getFormData(student);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,10 +47,91 @@ class StudentRegisterScreen extends StatelessWidget {
               color: Colors.white,
             ),
             onPressed: () {
-              Navigator.of(context).pop();
+              final isValid = _form.currentState.validate();
+              if (isValid) {
+                _form.currentState.save();
+                Provider.of<Students>(context, listen: false).put(
+                  Student(
+                    id: _formData['id'],
+                    name: _formData['name'],
+                    email: _formData['email'],
+                    attendance: _formData['attendance'],
+                    avatarUrl: _formData['avatarUrl'],
+                  ),
+                );
+                Navigator.of(context).pop();
+              }
             },
           )
         ],
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(15),
+        child: Form(
+          key: _form,
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                initialValue: _formData.isEmpty
+                    ? "Cadastrar novo aluno"
+                    : "Matrícula: " + _formData['id'],
+                decoration: InputDecoration(
+                  enabled: false,
+                ),
+              ),
+              TextFormField(
+                initialValue: _formData['name'],
+                decoration: InputDecoration(
+                  labelText: 'Nome',
+                  icon: Icon(Icons.person),
+                ),
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'O campo Nome é obrigatório';
+                  }
+                  if (value.trim().length < 3) {
+                    return 'O campo Nome precisa ter mais que 3 caracteres';
+                  }
+                  return null;
+                },
+                onSaved: (value) => _formData['name'] = value,
+              ),
+              TextFormField(
+                initialValue: _formData['email'],
+                decoration: InputDecoration(
+                  labelText: 'E-mail',
+                  icon: Icon(Icons.mail),
+                ),
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'O campo E-mail é obrigatório';
+                  }
+                  if (value.trim().length < 3) {
+                    return 'O campo E-mail precisa ter mais que 3 caracteres';
+                  }
+                  return null;
+                },
+                onSaved: (value) => _formData['email'] = value,
+              ),
+              TextFormField(
+                initialValue: _formData['attendance'],
+                decoration: InputDecoration(
+                  labelText: 'Presenças',
+                  icon: Icon(Icons.date_range_rounded),
+                ),
+                onSaved: (value) => _formData['attendance'] = value,
+              ),
+              TextFormField(
+                initialValue: _formData['avatarUrl'],
+                decoration: InputDecoration(
+                  labelText: 'Foto',
+                  icon: Icon(Icons.image_search),
+                ),
+                onSaved: (value) => _formData['avatarUrl'] = value,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

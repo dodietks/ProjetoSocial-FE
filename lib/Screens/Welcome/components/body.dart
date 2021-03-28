@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_social/components/rouded_button.dart';
 import 'package:projeto_social/routes/app_routes.dart';
 
-import 'components.dart';
+import 'background.dart';
 
 class Body extends StatelessWidget {
   @override

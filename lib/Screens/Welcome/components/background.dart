@@ -12,9 +12,10 @@ class BackGround extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     //This size provide a total height and width of our screen
     return Container(
+      width: double.infinity,
       height: size.height,
-      width: size.width,
       child: Stack(
+        alignment: Alignment.center,
         children: <Widget>[
           Positioned(
             top: 0,
