@@ -11,15 +11,15 @@ class StudentRegisterScreen extends StatefulWidget {
 class _StudentRegisterScreenState extends State<StudentRegisterScreen> {
   final _form = GlobalKey<FormState>();
 
-  final Map<String, String> _formData = {};
+  final Map<Student, Student> _formData = {};
 
   void _getFormData(Student student) {
     if (student != null) {
-      _formData['id'] = student.id;
-      _formData['name'] = student.name;
-      _formData['email'] = student.email;
-      _formData['attendance'] = student.attendance;
-      _formData['avatarUrl'] = student.avatarUrl;
+      student.id as Student;
+      student.name as Student;
+      student.email as Student;
+      student.attendance as Student;
+      student.avatarUrl as Student;
     }
   }
 
@@ -50,15 +50,15 @@ class _StudentRegisterScreenState extends State<StudentRegisterScreen> {
               final isValid = _form.currentState.validate();
               if (isValid) {
                 _form.currentState.save();
-                Provider.of<Students>(context, listen: false).put(
-                  Student(
-                    id: _formData['id'],
-                    name: _formData['name'],
-                    email: _formData['email'],
-                    attendance: _formData['attendance'],
-                    avatarUrl: _formData['avatarUrl'],
-                  ),
-                );
+                // Provider.of<Students>(context, listen: false).put(
+                //   Student(
+                //     id: _formData['id'],
+                //     name: _formData['name'],
+                //     email: _formData['email'],
+                //     attendance: _formData['attendance'],
+                //     avatarUrl: _formData['avatarUrl'],
+                //   ),
+                //);
                 Navigator.of(context).pop();
               }
             },
@@ -74,13 +74,13 @@ class _StudentRegisterScreenState extends State<StudentRegisterScreen> {
               TextFormField(
                 initialValue: _formData.isEmpty
                     ? "Cadastrar novo aluno"
-                    : "Matrícula: " + _formData['id'],
+                    : "Matrícula", // + _formData['id'],
                 decoration: InputDecoration(
                   enabled: false,
                 ),
               ),
               TextFormField(
-                initialValue: _formData['name'],
+                initialValue: "MUDAR",
                 decoration: InputDecoration(
                   labelText: 'Nome',
                   icon: Icon(Icons.person),
@@ -94,10 +94,10 @@ class _StudentRegisterScreenState extends State<StudentRegisterScreen> {
                   }
                   return null;
                 },
-                onSaved: (value) => _formData['name'] = value,
+                //onSaved: (value) => _formData['name'] = value as Student,
               ),
               TextFormField(
-                initialValue: _formData['email'],
+                // initialValue: _formData['email'],
                 decoration: InputDecoration(
                   labelText: 'E-mail',
                   icon: Icon(Icons.mail),
@@ -111,23 +111,23 @@ class _StudentRegisterScreenState extends State<StudentRegisterScreen> {
                   }
                   return null;
                 },
-                onSaved: (value) => _formData['email'] = value,
+                //onSaved: (value) => _formData['email'] = value as Student,
               ),
               TextFormField(
-                initialValue: _formData['attendance'],
+                // initialValue: _formData['attendance'],
                 decoration: InputDecoration(
                   labelText: 'Presenças',
                   icon: Icon(Icons.date_range_rounded),
                 ),
-                onSaved: (value) => _formData['attendance'] = value,
+                //onSaved: (value) => _formData['attendance'] = value as Student,
               ),
               TextFormField(
-                initialValue: _formData['avatarUrl'],
+                //initialValue: _formData['avatarUrl'],
                 decoration: InputDecoration(
                   labelText: 'Foto',
                   icon: Icon(Icons.image_search),
                 ),
-                onSaved: (value) => _formData['avatarUrl'] = value,
+                //onSaved: (value) => _formData['avatarUrl'] = value as Student,
               ),
             ],
           ),

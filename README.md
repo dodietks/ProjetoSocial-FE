@@ -1,2 +1,2 @@
 # projeto_social
-Aplicação para administração de projetos sociais
+Frontend em Flutter para ProjetoSocialAPI

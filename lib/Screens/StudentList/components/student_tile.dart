@@ -23,12 +23,18 @@ class StudentTile extends StatelessWidget {
       subtitle: Container(
         child: Row(
           children: <Widget>[
-            Text("Presenças: " + student.attendance),
+            Text("Presenças: "),
             IconButton(
               icon: Icon(Icons.add_box),
               color: Colors.amber,
               iconSize: 20,
-              onPressed: () {},
+              onPressed: () {
+                // Provider.of<Students>(context, listen: false).put(
+                //   Student(
+                //       //attendance: plus ,
+                //       ),
+                // );
+              },
             ),
           ],
         ),
@@ -76,8 +82,8 @@ class StudentTile extends StatelessWidget {
                 ).then(
                   (confirmed) {
                     if (confirmed) {
-                      Provider.of<Students>(context, listen: false)
-                          .remove(student);
+                      // Provider.of<Students>(context, listen: false)
+                      //     .remove(student);
                     }
                   },
                 );

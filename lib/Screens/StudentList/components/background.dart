@@ -34,7 +34,7 @@ class Background extends StatelessWidget {
           )
         ],
       ),
-      body: Body(students: students),
+      body: Body(),
     );
   }
 }
