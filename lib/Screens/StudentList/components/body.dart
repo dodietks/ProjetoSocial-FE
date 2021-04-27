@@ -13,7 +13,7 @@ class Body extends StatelessWidget {
     final studentsData = Provider.of<Students>(context);
     final students = studentsData.items;
     return ListView.builder(
-      itemCount: studentsData.count,
+      itemCount: studentsData.itemsCount,
       itemBuilder: (context, i) => StudentTile(students[i]),
     );
   }

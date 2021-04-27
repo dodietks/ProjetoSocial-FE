@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class BackGround extends StatelessWidget {
   final Widget child;
   const BackGround({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
   }) : super(key: key);
 
   @override

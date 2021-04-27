@@ -8,7 +8,7 @@ import 'package:projeto_social/routes/app_routes.dart';
 
 class Body extends StatelessWidget {
   const Body({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

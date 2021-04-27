@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class HaveAccountCheck extends StatelessWidget {
   final bool login;
-  final Function press;
+  final Function? press;
   const HaveAccountCheck({
-    Key key,
+    Key? key,
     this.login = true,
     this.press,
   }) : super(key: key);
@@ -19,7 +19,7 @@ class HaveAccountCheck extends StatelessWidget {
           style: TextStyle(color: Colors.blueGrey),
         ),
         GestureDetector(
-          onTap: press,
+          onTap: press as void Function()?,
           child: Text(
             login ? "Cadastrar" : "Entrar",
             style: TextStyle(

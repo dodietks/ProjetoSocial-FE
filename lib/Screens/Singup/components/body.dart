@@ -9,7 +9,7 @@ import 'package:projeto_social/components/rouded_password_field.dart';
 import 'package:projeto_social/routes/app_routes.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key key}) : super(key: key);
+  const Body({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

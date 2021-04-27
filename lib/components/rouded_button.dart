@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class RoudedButton extends StatelessWidget {
-  final String text;
-  final Function press;
-  final Color color, textColor;
+  final String? text;
+  final Function? press;
+  final Color? color, textColor;
   const RoudedButton({
-    Key key,
+    Key? key,
     this.text,
     this.press,
     this.color = Colors.amber,
@@ -23,11 +23,11 @@ class RoudedButton extends StatelessWidget {
         child: ElevatedButton(
             //padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
             //color: color,
-            onPressed: press,
+            onPressed: press as void Function()?,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text(
-                text,
+                text!,
                 style: TextStyle(color: textColor),
               ),
             )),

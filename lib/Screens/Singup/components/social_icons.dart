@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class SocialSingup extends StatelessWidget {
-  final String imagePath;
-  final Function press;
+  final String? imagePath;
+  final Function? press;
   const SocialSingup({
-    Key key,
+    Key? key,
     this.imagePath,
     this.press,
   }) : super(key: key);
@@ -12,7 +12,7 @@ class SocialSingup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: press,
+        onTap: press as void Function()?,
         child: Container(
           padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
@@ -20,7 +20,7 @@ class SocialSingup extends StatelessWidget {
             shape: BoxShape.circle,
           ),
           child: Image.asset(
-            imagePath,
+            imagePath!,
             height: 30,
           ),
         ));

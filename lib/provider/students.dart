@@ -1,75 +1,41 @@
 import 'dart:convert';
-
+import 'dart:async' show Future;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:projeto_social/constants/constants.dart';
 import 'package:projeto_social/models/student.dart';
 
 class Students with ChangeNotifier {
-  final _baseUrl = Uri.parse('${Constants.BASE_API_URL}/${Constants.STUDENT_VERSION_1}');
+  final _url = Uri.http(Constants.BASE_API_URL, Constants.STUDENT_VERSION_1);
   List<Student> _items = [];
 
   List<Student> get items => [..._items];
 
-  int get count {
+  int get itemsCount {
     return _items.length;
   }
 
-  Future<void> loadStudents() async {
-    final response = await http.get(_baseUrl);
-    Map<String, dynamic> data = json.decode(response.body);
-    print(json.decode(response.body));
-    _items.clear();
-    if (data != null) {
-      data.forEach((studentId, studentData) {
-        _items.add(Student(
-          id: studentId,
-          name: studentData['name'],
-          gender: studentData['gender'],
-          email: studentData['email'],
-          avatarUrl: studentData['avatarUrl'],
-          degree: studentData['degree'],
-          birthdate: studentData['birthdate'],
-        ));
-      });
-      notifyListeners();
-    }
-    return Future.value();
+  Future<List<Student>> loadStudents() async {
+    final response = await http.get(_url, headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Accept': "*/*",
+      'connection': 'keep-alive',
+      'Accept-Encoding': 'gzip, deflate, br',
+    });
+
+    _items = parseStudents(response.body);
+    notifyListeners();
+    return _items;
   }
+
+  deleteStudent(int id) {}
+
+  void put(Student student) {}
 }
 
-// Student byIndex(int i) {
-//   return _items.values.elementAt(i);
-// }
+List<Student> parseStudents(String responseBody) {
+  final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
 
-  // void put(Student student) {
-  //   if (student == null) {
-  //     return;
-  //   }
-  //   // alterar
-  //   if (student.id != null &&
-  //       student.id.bitLength > 0 &&
-  //       _items.containsKey(student.id)) {
-  //     _items.update(student.id, (_) => student);
-  //   } else {
-  //     // adicionar
-  //     final id = Random().nextInt(999999);
-  //     _items.putIfAbsent(
-  //       id,
-  //       () => Student(
-  //           id: id,
-  //           name: student.name,
-  //           email: student.email,
-  //           avatarUrl: student.avatarUrl,
-  //           attendance: student.attendance),
-  //     );
-  //   }
-  //   notifyListeners();
-  // }
-
-  // void remove(Student student) {
-  //   if (student != null && student.id != null) {
-  //     _items.remove(student.id);
-  //     notifyListeners();
-  //   }
-  // }
+  return parsed.map<Student>((json) => Student.fromJson(json)).toList();
+}

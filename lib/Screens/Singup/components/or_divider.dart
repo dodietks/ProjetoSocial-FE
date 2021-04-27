@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class OrDivider extends StatelessWidget {
-  final String label;
+  final String? label;
 
-  const OrDivider({Key key, this.label}) : super(key: key);
+  const OrDivider({Key? key, this.label}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -16,7 +16,7 @@ class OrDivider extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              label,
+              label!,
               style:
                   TextStyle(color: Colors.amber, fontWeight: FontWeight.w600),
             ),
@@ -30,7 +30,7 @@ class OrDivider extends StatelessWidget {
 
 class DividerBuilder extends StatelessWidget {
   const DividerBuilder({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

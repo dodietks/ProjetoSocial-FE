@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class Background extends StatelessWidget {
   const Background({
-    Key key,
-    @required GlobalKey<FormState> form,
+    Key? key,
+    required GlobalKey<FormState> form,
   })  : _form = form,
         super(key: key);
 

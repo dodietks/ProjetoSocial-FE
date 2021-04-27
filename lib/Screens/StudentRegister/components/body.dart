@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
   const Body({
-    Key key,
-    @required GlobalKey<FormState> form,
-  })  : _form = form,
+    Key? key,
+    required GlobalKey<FormState> form,
+  })   : _form = form,
         super(key: key);
 
   // ignore: unused_field
@@ -13,7 +13,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: null,
+      padding: EdgeInsets.all(20),
     );
   }
 }

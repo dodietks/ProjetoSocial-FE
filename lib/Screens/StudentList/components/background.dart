@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:projeto_social/Screens/StudentList/components/body.dart';
 import 'package:projeto_social/provider/students.dart';
 import 'package:projeto_social/routes/app_routes.dart';
+import 'package:provider/provider.dart';
 
 class Background extends StatelessWidget {
   const Background({
-    Key key,
-    @required this.students,
+    Key? key,
+    required this.students,
   }) : super(key: key);
 
-  final Students students;
+  final Students? students;
+
+  Future<void> _refreshStudents(BuildContext context) {
+    return Provider.of<Students>(context, listen: false).loadStudents();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,8 @@ class Background extends StatelessWidget {
           )
         ],
       ),
-      body: Body(),
+      body: RefreshIndicator(
+          onRefresh: () => _refreshStudents(context), child: Body()),
     );
   }
 }

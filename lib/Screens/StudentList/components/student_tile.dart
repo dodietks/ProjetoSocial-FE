@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:projeto_social/models/student.dart';
 import 'package:projeto_social/provider/students.dart';
@@ -10,83 +12,60 @@ class StudentTile extends StatelessWidget {
   const StudentTile(this.student);
   @override
   Widget build(BuildContext context) {
-    final avatar = student.avatarUrl == null || student.avatarUrl.isEmpty
-        ? CircleAvatar(
-            child: Icon(Icons.face),
-          )
-        : CircleAvatar(
-            backgroundImage: NetworkImage(student.avatarUrl),
-          );
+    final scaffold = Scaffold.of(context);
     return ListTile(
-      leading: avatar,
-      title: Text(student.name),
-      subtitle: Container(
-        child: Row(
-          children: <Widget>[
-            Text("Presenças: "),
-            IconButton(
-              icon: Icon(Icons.add_box),
-              color: Colors.amber,
-              iconSize: 20,
-              onPressed: () {
-                // Provider.of<Students>(context, listen: false).put(
-                //   Student(
-                //       //attendance: plus ,
-                //       ),
-                // );
-              },
-            ),
-          ],
-        ),
+      leading: CircleAvatar(
+        backgroundImage: NetworkImage(student.avatarUrl),
       ),
+      title: Text(student.name),
       trailing: Container(
-        width: 96,
+        width: 100,
         child: Row(
           children: <Widget>[
             IconButton(
               icon: Icon(Icons.edit),
+              color: Theme.of(context).primaryColor,
               onPressed: () {
                 Navigator.of(context).pushNamed(
-                  AppRoutes.STUDENT_REGISTRATION_SCREEN,
-                  arguments: student,
-                );
+                    AppRoutes.STUDENT_REGISTRATION_SCREEN,
+                    arguments: student);
               },
             ),
             IconButton(
-              icon: Icon(
-                Icons.delete,
-              ),
+              icon: Icon(Icons.delete),
+              color: Theme.of(context).errorColor,
               onPressed: () {
                 showDialog(
                   context: context,
                   builder: (ctx) => AlertDialog(
-                    title: Text('Excluir aluno?'),
-                    content: Text('Você Gostaria de Excluir o usuário ' +
-                        student.name +
-                        '?'),
+                    title: Text('Excluir Produto'),
+                    content: Text('Tem certeza?'),
                     actions: <Widget>[
                       TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop(false);
-                        },
-                        child: Text('Cancelar'),
+                        onPressed: () => Navigator.of(context).pop(false),
+                        child: Text('Não'),
                       ),
                       TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop(true);
-                        },
-                        child: Text('Confirmar'),
+                        onPressed: () => Navigator.of(context).pop(true),
+                        child: Text('Sim'),
                       ),
                     ],
                   ),
-                ).then(
-                  (confirmed) {
-                    if (confirmed) {
-                      // Provider.of<Students>(context, listen: false)
-                      //     .remove(student);
+                ).then((value) async {
+                  if (value) {
+                    try {
+                      await Provider.of<Students>(context, listen: false)
+                          .deleteStudent(student.id);
+                    } on HttpException catch (error) {
+                      // ignore: deprecated_member_use
+                      scaffold.showSnackBar(
+                        SnackBar(
+                          content: Text(error.toString()),
+                        ),
+                      );
                     }
-                  },
-                );
+                  }
+                });
               },
             ),
           ],

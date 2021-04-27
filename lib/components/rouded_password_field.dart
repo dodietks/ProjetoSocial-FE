@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:projeto_social/components/text_field_container.dart';
 
 class RoundedPasswordField extends StatelessWidget {
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
   final hintText;
 
   const RoundedPasswordField({
-    Key key,
+    Key? key,
     this.onChanged,
     this.hintText,
   }) : super(key: key);
