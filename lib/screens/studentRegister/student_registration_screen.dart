@@ -160,7 +160,7 @@ class _StudentRegisterScreenState extends State<StudentRegisterScreen> {
                 initialValue: _formData['degree'].toString(),
                 decoration: InputDecoration(
                   labelText: 'Grau',
-                  icon: Icon(Icons.view_column),
+                  icon: Icon(Icons.reorder),
                 ),
                 //onSaved: (value) => _formData['avatarUrl'] = value as Student,
               ),

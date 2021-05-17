@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_social/Screens/Login/components/background.dart';
+import 'package:projeto_social/Screens/Singup/components/background.dart';
 import 'package:projeto_social/Screens/Singup/components/or_divider.dart';
 import 'package:projeto_social/Screens/Singup/components/social_icons.dart';
 import 'package:projeto_social/components/have_account_check.dart';
